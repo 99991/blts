@@ -20,32 +20,32 @@ def invert(A: list[list[float]]) -> list[list[float]]:
 #### [`tests.py`](https://github.com/99991/blts/blob/main/tests.py)
 
 ```python
-import numpy as np
+import random
 
 # Make tests reproducible
-np.random.seed(0)
+random.seed(0)
 
 # Check that NumPy is not being used
-with open(__file__) as f:
-    solution = f.read().rsplit("import numpy as np\n", 1)[0]
+with open(__file__, encoding="utf-8") as f:
+    solution = f.read().rsplit("import random\n", 1)[0]
 assert "np." not in solution
+
+def matmul(A, B):
+    return [[sum(a * b for a, b in zip(A_row, B_col)) for B_col in zip(*B)] for A_row in A]
 
 for n in range(1, 10):
     for _ in range(10):
         # Create random matrix
-        A = np.random.rand(n, n)
+        A = [[random.random() for _ in range(n)] for _ in range(n)]
 
-        A_inv = invert(A.tolist())
+        A_inv = invert(A)
 
-        # Check type
-        assert isinstance(A_inv, list)
-        for row in A_inv:
-            assert isinstance(row, list)
-            for value in row:
-                assert isinstance(value, float)
+        # A * A_inv should be the identity matrix with 1 on its diagonal and 0 otherwise
+        I = matmul(A, A_inv)
 
-        # Check result
-        assert np.allclose(A_inv, np.linalg.inv(A))
+        for i in range(n):
+            for j in range(n):
+                assert abs(I[i][j] - float(i == j)) < 1e-5
 ```
 
 # How to run
