@@ -12,14 +12,14 @@ Given the following [`signature.py`](https://github.com/99991/blts/blob/main/sig
 
 #### [`signature.py`](https://github.com/99991/blts/blob/main/signature.py)
 
-```
+```python
 def invert(A: list[list[float]]) -> list[list[float]]:
     # Invert the matrix A.
 ```
 
 #### [`tests.py`](https://github.com/99991/blts/blob/main/tests.py)
 
-```
+```python
 import numpy as np
 
 # Make tests reproducible
@@ -58,7 +58,7 @@ for n in range(1, 10):
 6. Download a language model. For testing, [Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/blob/main/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf) is a probably good enough and should run even if your computer is bad.
 7. Start `llama-server` using a command similar to the following:
 
-```
+```bash
 llama-server \
     --model qwen2.5-coder-1.5b-instruct-q4_k_m.gguf \
     --host 127.0.0.1 \
