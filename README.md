@@ -1,23 +1,23 @@
 # Bruteforce LLM Test Solver
 
-This script repeatedly asks a large language model (LLM) to implement a function with a given signature until the given tests pass.
+[This script](https://github.com/99991/blts/blob/main/main.py) repeatedly asks a large language model (LLM) to implement [a function with a given signature](https://github.com/99991/blts/blob/main/signature.py) until [the given tests](https://github.com/99991/blts/blob/main/tests.py) pass.
 For many problems, implementing tests is less work than implementing a solution, so we can outsource the laborious task of finding a solution to an LLM.
 Just write your desired function signature in `signature.py`, your tests in `test.py`, start `llama-server` and `main.py` and then go get a coffee. If you are lucky, the problem will be solved when you come back.
 
-Currently, only a simple bruteforce approach is implemented. If time allows, I might try implementing something smarter like e.g. Language Agent Tree Search in the future.
+Currently, only a simple bruteforce approach is implemented. If time allows, I might try implementing something smarter like e.g. Language Agent Tree Search in the distant future.
 
 # Matrix inversion example
 
-Given the following `signature.py` and `tests.py` file, the language model will (eventually) implement a function to invert the given matrix.
+Given the following [`signature.py`](https://github.com/99991/blts/blob/main/signature.py) and [`tests.py`](https://github.com/99991/blts/blob/main/tests.py) file, the language model will (eventually) implement a function to invert the given matrix.
 
-#### signature.py
+#### [`signature.py`](https://github.com/99991/blts/blob/main/signature.py)
 
 ```
 def invert(A: list[list[float]]) -> list[list[float]]:
     # Invert the matrix A.
 ```
 
-#### tests.py
+#### [`tests.py`](https://github.com/99991/blts/blob/main/tests.py)
 
 ```
 import numpy as np
@@ -53,9 +53,9 @@ for n in range(1, 10):
 1. `git clone git@github.com:99991/blts.git`
 2. `cd blts`
 3. Install Docker.
-4. Run `docker build -t testimage .` to build the Docker image from the Dockerfile.
+4. `docker build -t testimage .` to build the Docker image from the Dockerfile.
 5. Install [llama.cpp](https://github.com/ggerganov/llama.cpp).
-6. Download a language model. For testing, [Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/blob/main/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf) is a probably good enough and should run even on bad computers.
+6. Download a language model. For testing, [Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/blob/main/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf) is a probably good enough and should run even if your computer is bad.
 7. Start `llama-server` using a command similar to the following:
 
 ```
@@ -71,4 +71,4 @@ llama-server \
     --parallel 10
 ```
 
-8. Run `main.py`
+8. Run [`main.py`](https://github.com/99991/blts/blob/main/main.py)
